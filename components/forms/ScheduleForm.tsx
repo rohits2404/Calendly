@@ -1,6 +1,6 @@
 "use client";
 
-import { saveSchedule } from "@/actions/schedule";
+import { saveSchedule } from "@/server/actions/schedule";
 import { DAYS_OF_WEEK_IN_ORDER } from "@/constants";
 import { timeToFloat } from "@/lib/utils";
 import { scheduleFormSchema } from "@/schema/schedule";

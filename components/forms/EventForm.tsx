@@ -31,7 +31,7 @@ import {
 } from "../ui/alert-dialog";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { createEvent, deleteEvent, updateEvent } from "@/actions/events";
+import { createEvent, deleteEvent, updateEvent } from "@/server/actions/events";
 
 export const EventForm = ({
     event,

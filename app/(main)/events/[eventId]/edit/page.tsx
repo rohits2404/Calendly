@@ -1,4 +1,4 @@
-import { getEvent } from "@/actions/events";
+import { getEvent } from "@/server/actions/events";
 import { EventForm } from "@/components/forms/EventForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { auth } from "@clerk/nextjs/server";

@@ -1,4 +1,4 @@
-import { getSchedule } from "@/actions/schedule";
+import { getSchedule } from "@/server/actions/schedule";
 import { ScheduleForm } from "@/components/forms/ScheduleForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { auth } from "@clerk/nextjs/server";

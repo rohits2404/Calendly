@@ -1,4 +1,4 @@
-import { getEvents } from "@/actions/events";
+import { getEvents } from "@/server/actions/events";
 import { EventCard } from "@/components/cards/EventCard";
 import { Button } from "@/components/ui/button";
 import { auth } from "@clerk/nextjs/server";

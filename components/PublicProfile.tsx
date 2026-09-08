@@ -1,6 +1,6 @@
 "use client";
 
-import { getPublicEvents, PublicEvent } from "@/actions/events";
+import { getPublicEvents, PublicEvent } from "@/server/actions/events";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
