@@ -4,7 +4,7 @@ import { db } from "@/drizzle/db";
 import { EventTable } from "@/drizzle/schema";
 import { eventFormSchema } from "@/schema/events";
 import { auth } from "@clerk/nextjs/server";
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
@@ -86,4 +86,15 @@ export async function deleteEvent(id: string): Promise<void> {
     } finally {
         revalidatePath("/events");
     }
+}
+
+type EventRow = typeof EventTable.$inferSelect;
+
+// Async function to fetch all events (active and inactive) for a specific user
+export async function getEvents(clerkUserId: string): Promise<EventRow[]> {
+    return await db
+        .select()
+        .from(EventTable)
+        .where(eq(EventTable.clerkUserId, clerkUserId))
+        .orderBy(sql`lower(${EventTable.name})`);
 }
