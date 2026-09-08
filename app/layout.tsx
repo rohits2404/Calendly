@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -25,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased animate-fade-in`}
             >
-                {children}
+                <ClerkProvider>{children}</ClerkProvider>
                 <Toaster />
             </body>
         </html>
