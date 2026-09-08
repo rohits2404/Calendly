@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     title: "Chrona",
     description:
         "Chrona Is A Simple And Efficient Calendar App That Helps You Manage Your Events, Meetings, And Schedules With Ease. Stay Organized And Never Miss An Important Date Again!",
+    icons: {
+        icon: "/logo.svg",
+    },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

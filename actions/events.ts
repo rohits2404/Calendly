@@ -98,3 +98,22 @@ export async function getEvents(clerkUserId: string): Promise<EventRow[]> {
         .where(eq(EventTable.clerkUserId, clerkUserId))
         .orderBy(sql`lower(${EventTable.name})`);
 }
+
+// Fetch a specific event for a given user
+export async function getEvent(
+    clerkUserId: string,
+    eventId: string,
+): Promise<EventRow | undefined> {
+    const [event] = await db
+        .select()
+        .from(EventTable)
+        .where(
+            and(
+                eq(EventTable.clerkUserId, clerkUserId),
+                eq(EventTable.id, eventId),
+            ),
+        )
+        .limit(1);
+
+    return event;
+}
