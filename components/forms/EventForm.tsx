@@ -31,6 +31,7 @@ import {
 } from "../ui/alert-dialog";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { createEvent, deleteEvent, updateEvent } from "@/actions/events";
 
 export const EventForm = ({
     event,
@@ -62,7 +63,17 @@ export const EventForm = ({
 
     // Handle form submission
     async function onSubmit(values: z.infer<typeof eventFormSchema>) {
-        console.log(values);
+        const action =
+            event == null ? createEvent : updateEvent.bind(null, event.id);
+        try {
+            await action(values);
+            router.push("/events");
+        } catch (error: any) {
+            // Handle any error that occurs during the action (e.g., network error)
+            form.setError("root", {
+                message: `There was an error saving your event ${error.message}`,
+            });
+        }
     }
 
     return (
@@ -196,6 +207,7 @@ export const EventForm = ({
                                         onClick={() => {
                                             startDeleteTransition(async () => {
                                                 try {
+                                                    await deleteEvent(event.id);
                                                     router.push("/events");
                                                 } catch (error: any) {
                                                     form.setError("root", {
