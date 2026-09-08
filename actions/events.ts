@@ -117,3 +117,23 @@ export async function getEvent(
 
     return event;
 }
+
+export type PublicEvent = Omit<EventRow, "isActive"> & { isActive: true };
+
+// Async function to fetch all active (public) events for a specific user
+export async function getPublicEvents(
+    clerkUserId: string,
+): Promise<PublicEvent[]> {
+    const events = await db
+        .select()
+        .from(EventTable)
+        .where(
+            and(
+                eq(EventTable.clerkUserId, clerkUserId),
+                eq(EventTable.isActive, true),
+            ),
+        )
+        .orderBy(sql`lower(${EventTable.name})`);
+
+    return events as PublicEvent[];
+}
