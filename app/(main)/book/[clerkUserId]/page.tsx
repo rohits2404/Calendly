@@ -12,7 +12,6 @@ const PublicProfilePage = async ({
     const user = await client.users.getUser(clerkUserId);
     const { fullName } = user;
 
-    // Render PublicProfile component
     return <PublicProfile userId={clerkUserId} fullName={fullName} />;
 };
 

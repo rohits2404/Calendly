@@ -1,3 +1,4 @@
+import { MeetingForm } from "@/components/forms/MeetingForm";
 import { NoTimeSlots } from "@/components/NoTimeSlots";
 import {
     Card,
@@ -64,7 +65,13 @@ const BookingsPage = async ({
                     <CardDescription>{event.description}</CardDescription>
                 )}
             </CardHeader>
-            <CardContent>Meeting Form</CardContent>
+            <CardContent>
+                <MeetingForm
+                    validTimes={validTimes}
+                    eventId={event.id}
+                    clerkUserId={clerkUserId}
+                />
+            </CardContent>
         </Card>
     );
 };
